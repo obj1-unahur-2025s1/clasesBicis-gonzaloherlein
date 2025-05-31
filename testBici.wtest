@@ -1,0 +1,52 @@
+import bici.*
+
+describe "group of tests for bici" {
+
+  test "Primera Bici" {
+    const nuevaBici = new Bicicleta(
+      rodado = 28,
+      largo = 150,
+      marca = "Olmo",
+      accesorios = #{farolito}
+    )
+    assert.equals(85,nuevaBici.altura())
+    assert.equals(34,nuevaBici.velocidadCrucero())
+    assert.equals(0,nuevaBici.carga())
+    assert.equals(14.5,nuevaBici.peso())
+    assert.that(nuevaBici.tieneLuz())
+    assert.equals(1,nuevaBici.cantidadDeAccesoriosLivianos())
+  }
+
+  test "Segunda Bici" {
+    const canasto = new Canasto(volumen = 8)
+    const morral = new MorralDeBici(largo = 21,tieneOjoDeGato = true)
+    const nuevaBici = new Bicicleta(
+      rodado = 26,
+      largo = 110,
+      marca = "Legnano",
+      accesorios = #{farolito,canasto,morral}
+    )
+    assert.equals(80,nuevaBici.altura())
+    assert.equals(28,nuevaBici.velocidadCrucero())
+    assert.equals(23,nuevaBici.carga())
+    assert.equals(15.5,nuevaBici.peso())
+    assert.that(nuevaBici.tieneLuz())
+    assert.equals(2,nuevaBici.cantidadDeAccesoriosLivianos())
+  }
+
+  test "Tercera Bici" {
+    const morral = new MorralDeBici(largo = 6,tieneOjoDeGato = false)
+    const nuevaBici = new Bicicleta(
+      rodado = 20,
+      largo = 90,
+      marca = "Legnano",
+      accesorios = #{morral}
+    )
+    assert.equals(65,nuevaBici.altura())
+    assert.equals(22,nuevaBici.velocidadCrucero())
+    assert.equals(2,nuevaBici.carga())
+    assert.equals(11.2,nuevaBici.peso())
+    assert.notThat(nuevaBici.tieneLuz())
+    assert.equals(0,nuevaBici.cantidadDeAccesoriosLivianos())
+  }
+}
